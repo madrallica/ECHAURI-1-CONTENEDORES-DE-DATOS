@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define t 10
+
+struct EVENTOS
+{
+    char titulo[20];
+    char fecha[10];
+    char hora[5];
+    int  tiempoAnticipacion;
+
+}eventos[t];
+
+int eventos_agregados = 0;
+void agregar();
+void mostrar();
+
+enum
+{
+    _AGREGAR = 1,
+    _CONSULTAR,
+    _SALIR,
+};
+
+int main()
+{
+    int opc;
+    do
+    {
+        system("cls");
+        printf("\n\t\t\tMENU PRINCIPAL :D\n%i) AGREGAR\n%i) CONSULTAR\n%i) SALIR\n\nSELECCIONE UN OPCION: ",_AGREGAR,_CONSULTAR,_SALIR);
+        scanf("%i",&opc);
+        switch(opc)
+            {
+            case 1:
+                    printf("\n\t\t\tAGREGAR\n");
+                    agregar();
+                    system("pause");
+                    break;
+            case 2:
+                    printf("\n\t\t\tCONSULTAR\n");
+                    mostrar();
+                    system("pause");
+                    break;
+            case 3:
+                    printf("\n\t\t\tSALIENDO DEL PROGRAMA...\n");
+                    system("pause");
+                    break;
+
+            default:
+                    printf("\n\tOpcion incorrecta... favor de seleccionar un numero del menu\n\tPresione cualquier tecla para ser redirigid@\n\n\n\n\n\t");
+                    system("pause");
+            }
+
+    }while(opc != _SALIR);
+
+    return 0;
+}
+void agregar()
+{
+    int i=0;
+    for (i = 0; i <= t; i++)
+    {
+        printf ("\nREGISTRO DE EVENTO: %i DE %i\n", i+1, t+1);
+        printf ("NOMBRE DEL EVENTO: ");
+        fflush(stdin);gets(eventos[i].titulo);
+        printf ("FECHA DEL EVENTO (dd/mm/aaaa): ");
+        fflush(stdin);gets(eventos[i].fecha);
+        printf ("HORA DEL EVENTO (00:00): ");
+        fflush(stdin);gets(eventos[i].hora);
+        printf ("TIEMPO DE ANTICIPACION DEL EVENTO (minutos antes para realizar la notificacion): ");
+        scanf("%i",& (eventos[i].tiempoAnticipacion));
+    }
+
+}
+
+void mostrar()
+{
+    int i=0;
+    for (i = 0; i <= t; i++)
+    {
+        printf ("\nCONSULTA DEL EVENTO: %i DE %i\n", i+1, t+1);
+        printf ("\nNOMBRE DEL EVENTO: %s",eventos[i].titulo);fflush(stdin);
+        printf ("\nFECHA DEL EVENTO (dd/mm/aaaa): %s",eventos[i].fecha);fflush(stdin);
+        printf ("\nHORA DEL EVENTO (00:00): %s",eventos[i].hora);fflush(stdin);
+        printf ("\nTIEMPO DE ANTICIPACION DEL EVENTO (minutos antes para realizar la notificacion): %i\n",eventos[i].tiempoAnticipacion);
+    }
+
+}
