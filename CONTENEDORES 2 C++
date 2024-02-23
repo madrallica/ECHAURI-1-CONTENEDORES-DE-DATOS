@@ -1,0 +1,108 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define t 10
+
+using namespace std;
+
+struct EVENTOS
+{
+    string titulo;
+    string fecha;
+    string hora;
+    int  tiempoAnticipacion;
+}eventos[t];
+
+int eventos_agregados = 0;
+void agregar();
+void mostrar();
+
+enum
+{
+    _AGREGAR = 1,
+    _CONSULTAR,
+    _SALIR,
+};
+
+int main()
+{
+    int opc;
+    do
+    {
+        system("cls");
+        cout<<"\n\t\t\tMENU PRINCIPAL :D\n"
+            <<_AGREGAR<<") AGREGAR\n"
+            <<_CONSULTAR<<") CONSULTAR\n"
+            <<_SALIR<<") SALIR\n\nSELECCIONE UN OPCION: ";
+        cin>>opc;
+        switch(opc)
+            {
+            case _AGREGAR:
+                    cout<<"\n\t\t\tAGREGAR\n";
+                    agregar();
+                    system("pause");
+                    break;
+            case _CONSULTAR:
+                    cout<<"\n\t\t\tCONSULTAR\n";
+                    mostrar();
+                    system("pause");
+                    break;
+            case _SALIR:
+                    cout<<"\n\t\t\tSALIENDO DEL PROGRAMA...\n";
+                    system("pause");
+                    break;
+
+            default:
+                    cout<<"\n\tOpcion incorrecta... favor de seleccionar un numero del menu\n\tPresione cualquier tecla para ser redirigid@\n\n\n\n\n\t";
+                    system("pause");
+            }
+
+    }while(opc != _SALIR);
+
+    return 0;
+}
+void agregar()
+{
+    int i=0;
+    for (i = 0; i < t; i++)
+    {
+        cout<<"\nREGISTRO DE EVENTO: "<< i+1 << " DE "<<t
+            <<"\nNOMBRE DEL EVENTO: ";
+        cin.ignore();
+        getline(cin, eventos[i].titulo);
+        cout<<"\nGUARDADO";
+        cout<<"\nFECHA DEL EVENTO (dd/mm/aaaa): ";
+        getline(cin, eventos[i].fecha);
+        cout<<"\nGUARDADO";
+        cout<<"\nHORA DEL EVENTO (00:00): ";
+        getline(cin, eventos[i].hora);
+        cout<<"\nGUARDADO";
+        cout<<"\nTIEMPO DE ANTICIPACION DEL EVENTO (minutos antes para realizar la notificacion): ";
+        //cin.ignore();
+        cin>>eventos[i].tiempoAnticipacion;
+        cout<<"\nGUARDADO";
+        cout<<"\nEVENTO RESGISTRADO CON EXITO"<<endl;
+    system ("pause");
+    }
+    cout<<"\nEVENTOS RESGISTRADO CON EXITO"<<endl;
+    system ("pause");
+
+}
+
+void mostrar()
+{
+    int i=0;
+    for (i = 0; i < t; i++)
+    {
+
+        cout<<"\nCONSULTA DEL EVENTO: "<< i+1 << " DE "<<t
+            <<"\nNOMBRE DEL EVENTO: "<<eventos[i].titulo
+            <<"\nFECHA DEL EVENTO (dd/mm/aaaa): "<<eventos[i].fecha
+            <<"\nHORA DEL EVENTO (00:00): "<<eventos[i].hora
+            <<"\nTIEMPO DE ANTICIPACION DEL EVENTO (minutos antes para realizar la notificacion): "<<eventos[i].tiempoAnticipacion
+            <<endl;
+    }
+
+
+}
